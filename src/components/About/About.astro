@@ -1,8 +1,7 @@
 ---
-import type { AboutUser } from '@/types/about';
-import AboutImage from './AboutImage.astro';
+import AboutDescription from './AboutDescription.astro';
 import AboutInfo from './AboutInfo.astro';
-import AboutSocialNetworks from './AboutSocialNetworks.astro';
+import type { AboutUser } from '@/types/about.type';
 
 interface Props {
   aboutUsers: AboutUser[];
@@ -11,18 +10,26 @@ interface Props {
 const { aboutUsers } = Astro.props;
 ---
 
-{
-  aboutUsers.map((user) => {
-    return (
-      <div class="group w-full max-w-sm border rounded-lg border-light-border dark:border-dark-border hover:border-green-light-primary dark:hover:border-green-light-primary dark:hover:text-green-light-primary">
-        <div class="flex flex-col items-start p-6">
-          <AboutImage userIcon={user.icon} userName={user.name} />
-          <AboutInfo userRole={user.role} userName={user.name} />
-          <div class="flex mt-4 md:mt-2 gap-2">
-            <AboutSocialNetworks userSocialNetworks={user.socialNetworks} />
+<div class="lg:px-4 px-8 pt-6">
+  <div class="flex dark:border-dark-tertiary">
+    <AboutDescription />
+  </div>
+  <div class="flex flex-wrap gap-2 justify-center">
+    {
+      aboutUsers.map((user) => {
+        return (
+          <div class="group w-full max-w-xs border rounded-lg border-light-border hover:border-green-light-primary dark:border-green-light-primary dark:hover:text-green-light-primary dark:bg-dark-home-card">
+            <div class="flex flex-col items-start px-6 pt-6 pb-3">
+              <AboutInfo
+                userIcon={user.icon}
+                userRole={user.role}
+                userName={user.name}
+                socialNetworks={user.socialNetworks}
+              />
+            </div>
           </div>
-        </div>
-      </div>
-    );
-  })
-}
+        );
+      })
+    }
+  </div>
+</div>

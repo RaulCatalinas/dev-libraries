@@ -1,34 +1,32 @@
 ---
-import BaseLayout from '@/layouts/BaseLayout.astro';
-import Card from '@/components/Card/Card.astro';
+import LibraryCard from '@/components/Library/LibraryCard.astro';
+import LayoutSideBar from '@/layouts/LayoutSideBar.astro';
 import { getEntry } from 'astro:content';
 
 export function getStaticPaths() {
-  return [
-    { params: { library: 'javascript-typescript' } },
-    { params: { library: 'python' } },
-    { params: { library: 'java' } },
-  ];
+  return [{ params: { library: 'python' } }, { params: { library: 'javascript-typescript' } }];
 }
 
 const { library } = Astro.params;
 
-const libraryContent = await getEntry('libraries', library);
+const librariesContent = await getEntry('libraries', library);
 ---
 
-<BaseLayout>
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 mb-4">
+<LayoutSideBar>
+  <div
+    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-4 px-4 pt-6"
+  >
     {
-      libraryContent?.data.libraries.map((item) => {
+      librariesContent?.data.libraries.map((library) => {
         return (
-          <Card
-            libraryURL={item.libraryURL}
-            icon={item.libraryIcon}
-            title={item.libraryTitle}
-            description={item.libraryDescription}
+          <LibraryCard
+            libraryURL={library.libraryURL}
+            libraryIcon={library.libraryIcon}
+            libraryTitle={library.libraryTitle}
+            libraryDescription={library.libraryDescription}
           />
         );
       })
     }
   </div>
-</BaseLayout>
+</LayoutSideBar>

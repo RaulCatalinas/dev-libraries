@@ -1,10 +1,10 @@
-import type { AboutUser } from '@/types/about';
+import type { AboutUser } from '@/types/about.type';
 
 export const ABOUT_USERS: AboutUser[] = [
   {
     icon: 'https://avatars.githubusercontent.com/u/158519820?s=400&u=3600dbffa81b44fc57d7e7e29a156e21da029c69&v=4',
     name: 'Marco Baltazar',
-    role: 'FullStack Software Developer',
+    role: 'Software Engineer',
     socialNetworks: [
       {
         mediaName: 'linkedin',
@@ -52,7 +52,7 @@ export const ABOUT_USERS: AboutUser[] = [
     ],
   },
   {
-    icon: 'https://example.com/readyplayerone.jpg',
+    icon: 'https://avatars.githubusercontent.com/u/50189749?v=4%22',
     name: 'Diego Sivila',
     role: 'QA Engineer',
     socialNetworks: [

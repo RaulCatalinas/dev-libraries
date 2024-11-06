@@ -1,5 +1,5 @@
 ---
-import { type MenuSidebarItem } from '@/types/sidebar';
+import type { MenuSidebarItem } from '@/types/sidebar.type';
 
 interface Props {
   sidebarItems: MenuSidebarItem[];
@@ -8,17 +8,22 @@ interface Props {
 const { sidebarItems } = Astro.props;
 ---
 
-{
-  sidebarItems.map((sidebarItem) => {
-    return (
-      <li class="aside-nav-bar-container-li">
-        <a
-          href={sidebarItem.path}
-          class="flex items-center p-3 text-base font-medium text-light-paragraph rounded-lg transition duration-100 dark:text-light-secondary hover:bg-green-light-secondary dark:hover:bg-dark-primary dark:hover:text-light-paragraph group"
-        >
-          <span class="ml-3">{sidebarItem.name}</span>
-        </a>
-      </li>
-    );
-  })
-}
+<ul class="side-bar-ul-top space-y-2">
+  {
+    sidebarItems.map((sidebarItem) => {
+      return (
+        <li class="aside-nav-bar-container-li">
+          <a
+            href={sidebarItem.path}
+            class:list={[
+              'flex items-center p-3 text-base font-medium text-light-title rounded-lg transition duration-100',
+              'dark:text-light-secondary hover:bg-green-light-secondary dark:hover:bg-green-dark-primary dark:hover:text-dark-secondary group',
+            ]}
+          >
+            <span class="ml-3">{sidebarItem.name}</span>
+          </a>
+        </li>
+      );
+    })
+  }
+</ul>
